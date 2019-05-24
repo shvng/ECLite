@@ -51,14 +51,6 @@ export const markup = function(tableConfig) {
           <p>Please select mobile</p>
           <p><input placeholder="Mobile..." oninput="this.className = ''" name="mobile" readonly></p>
         </div>
-        <div class="tab">
-          <p>Please select AppMemberId</p>
-          <p><input placeholder="AppMemberId..." oninput="this.className = ''" name="AppMemberId" readonly></p>
-        </div>
-        <div class="tab">
-          <p>Please select ClientMemberId</p>
-          <p><input placeholder="ClientMemberId..." oninput="this.className = ''" name="ClientMemberId" readonly></p>
-        </div>
         <div style="overflow:auto;">
           <div style="float:right;margin: 15px;">
             <button type="button" id="prevBtn" class="goToStep">Previous</button>
@@ -67,8 +59,6 @@ export const markup = function(tableConfig) {
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div id="steps" style="text-align:center;margin-top:40px;">
-          <span class="step"></span>
-          <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
@@ -86,3 +76,31 @@ export const markup = function(tableConfig) {
     </div>
     `
   );
+
+
+
+
+
+
+export const checkForEmptyKeyHelper = function(result) {
+    console.log("Hitt Under MArkup");
+    result = JSON.parse(result)
+    console.log(result);
+    //result = JSON.parse(result)  
+    let defaultJson = {
+        url: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+    };
+    console.log(defaultJson)
+    let emptyKeyFound;
+    for (let property1 in defaultJson) {
+        if(!result[property1] || !result.hasOwnProperty(property1)) {
+            emptyKeyFound = true;
+            break;
+        }
+    }
+    return emptyKeyFound;
+}
